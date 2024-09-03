@@ -1,0 +1,9 @@
+numpy
+pandas
+yfinance
+matplotlib
+random
+math 
+copy
+sqlite3
+datetime
