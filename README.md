@@ -39,19 +39,19 @@ Stock market analysis often involves examining various technical indicators to f
 1. Clone this repository to your local machine:
 
     ```bash
-    git clone https://github.com/yourusername/sp500-stock-indicator-analysis.git
+    git clone https://github.com/BonelessWater/NeuralNetworkv2.git
     ```
 
 2. Navigate to the project directory:
 
     ```bash
-    cd sp500-stock-indicator-analysis
+    cd NeuralNetworkv2
     ```
 
 3. Install the required Python packages:
 
     ```bash
-    pip install pandas numpy matplotlib yfinance
+    pip install -r requirements.txt
     ```
 
 4. Set up the SQLite database by running the script to fetch and store historical data (replace `main.py` with the actual script that initializes the database if it exists separately):
