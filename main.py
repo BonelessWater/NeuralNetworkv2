@@ -167,7 +167,7 @@ else:
     # Training Phase
     for epoch in range(num_epochs):
         print(f"Epoch {epoch + 1}/{num_epochs}")
-        for _ in range(200):  # Train with 200 random samples per epoch
+        for _ in range(500):  # Train with 500 random samples per epoch
             sample = all_data.sample()
             indicators = sample[['RSI', 'Bollinger', 'MACD', 'Stochastic', 'OBV', 'ATR', 'Williams %R', 'CCI']].values.flatten().tolist()
             expected_output = sample['PercentChange'].values[0]
