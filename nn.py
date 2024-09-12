@@ -193,21 +193,37 @@ class Network:
         return 1 - math.tanh(x) ** 2
 
     @staticmethod
-    def baseFunction(inputs):
-        return 0.5 * inputs[0] + 0.3 * inputs[1] - 0.2 * inputs[2] + 0.4 * inputs[3]
+    def baseFunction(input):
+        x = input[0]
+        y = input[1]
+        # Compute the components of the function
+        term1 = np.sin(x**2 + y**2)
+        term2 = np.cos(x * y)
+        term3 = np.exp(-((x - 1)**2 + (y - 2)**2) / 2)
+        term4 = (np.sin(2 * x) * np.cos(3 * y)) / (1 + x**2 + y**2)
 
+        # Sum all the terms
+        result = term1 + term2 + term3 + term4
+
+        return result
+        
     @staticmethod
     def sqDiff(output, expected):
         return (output - expected)**2
 
-struct = [4, 9, 9, 1]  # Network structure with four inputs
-generations = 10
-population = 5
+
 
 if __name__ == '__main__':
+    struct = [2, 9, 9, 1]  # Network structure with two inputs
+
     results = []
     lowest_sq_diff = float('inf')
     best_network = Network(struct)
+    
+    generations = 100  # Example number of generations
+    population = 50    # Example population size
+    
+    generation_best_diffs = []  # To store best squared difference for each generation
 
     for i in range(generations):
         for j in range(population):
@@ -239,7 +255,17 @@ if __name__ == '__main__':
                 lowest_sq_diff = curr_sq_diff
                 best_network = nn
                 results.append(curr_sq_diff)
-    
+        
+        # At the end of each generation, store the lowest squared difference
+        generation_best_diffs.append(lowest_sq_diff)
+
+    # Plot the improvement over generations
+    plt.plot(range(1, generations + 1), generation_best_diffs)
+    plt.xlabel("Generation")
+    plt.ylabel("Lowest Squared Difference")
+    plt.title("Improvement of the Network Over Generations")
+    plt.show()
+
     # Plot the values of the input multipliers (input weights) after training
     plt.bar(range(len(best_network.input_weights)), best_network.input_weights)
     plt.xlabel("Input Index")
